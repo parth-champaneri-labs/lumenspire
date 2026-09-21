@@ -1,0 +1,171 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import styles from "./Portfolio.module.css";
+
+const projects = [
+  {
+    num: "01",
+    category: "E-Commerce",
+    title: "Jewellery Business Platform",
+    description: "Premium jewellery website and digital product catalogue designed for high-value enquiries and showroom visits.",
+    capabilities: ["Product Catalogue", "Enquiry System", "Premium UI", "CMS"],
+    mockup: {
+      type: "browser",
+      header: "jewellery-store.com",
+      sidebar: ["Home", "Collections", "About", "Contact"],
+      metrics: [
+        { label: "Products", value: "2,400+" },
+        { label: "Enquiries", value: "340/mo" },
+      ],
+    },
+  },
+  {
+    num: "02",
+    category: "Custom Software",
+    title: "Inventory & Billing System",
+    description: "Custom inventory, purchase, sales, customer balance and reporting software for retail businesses.",
+    capabilities: ["Inventory Tracking", "Invoicing", "Ledgers", "Reporting"],
+    mockup: {
+      type: "dashboard",
+      header: "Inventory Dashboard",
+      sidebar: ["Dashboard", "Stock", "Sales", "Purchase", "Reports"],
+      metrics: [
+        { label: "SKUs", value: "8,500" },
+        { label: "Daily Orders", value: "120+" },
+      ],
+    },
+  },
+  {
+    num: "03",
+    category: "B2B Solutions",
+    title: "B2B Manufacturing Website",
+    description: "Product-focused website designed to help manufacturers present their extensive catalogue and generate B2B enquiries.",
+    capabilities: ["Bulk Enquiries", "Technical Specs", "SEO", "Fast Load"],
+    mockup: {
+      type: "browser",
+      header: "manufacturer-portal.com",
+      sidebar: ["Products", "Specs", "Downloads", "RFQ"],
+      metrics: [
+        { label: "Categories", value: "150+" },
+        { label: "B2B Leads", value: "85/mo" },
+      ],
+    },
+  },
+  {
+    num: "04",
+    category: "Enterprise",
+    title: "Enterprise ERP Modules",
+    description: "Operational modules for purchasing, stores, planning, engineering and administration built for scale.",
+    capabilities: ["Multi-department", "Approval Workflows", "Live Dashboards"],
+    mockup: {
+      type: "dashboard",
+      header: "ERP System",
+      sidebar: ["Purchasing", "Stores", "Planning", "Engineering", "Admin"],
+      metrics: [
+        { label: "Users", value: "200+" },
+        { label: "Modules", value: "12" },
+      ],
+    },
+  },
+];
+
+export default function Portfolio() {
+  return (
+    <section id="work" className={`section ${styles.section}`}>
+      <div className="container">
+        <div className={styles.header}>
+          <motion.span
+            className={styles.label}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            Selected Work
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="heading-2"
+          >
+            Digital products designed<br />for real businesses.
+          </motion.h2>
+        </div>
+
+        <div className={styles.projects}>
+          {projects.map((project, i) => (
+            <motion.div
+              key={i}
+              className={`${styles.project} ${i % 2 === 1 ? styles.projectReversed : ""}`}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <div className={styles.projectContent}>
+                <span className={styles.projectNum}>{project.num}</span>
+                <span className={styles.projectCategory}>{project.category}</span>
+                <h3 className={styles.projectTitle}>{project.title}</h3>
+                <p className={styles.projectDesc}>{project.description}</p>
+                <div className={styles.projectTags}>
+                  {project.capabilities.map((cap, j) => (
+                    <span key={j} className={styles.tag}>{cap}</span>
+                  ))}
+                </div>
+                <Link href="#contact" className={styles.projectCta}>
+                  View Project <ArrowUpRight size={16} />
+                </Link>
+              </div>
+
+              <div className={styles.projectVisual}>
+                <motion.div
+                  className={styles.mockupFrame}
+                  whileHover={{ y: -8, scale: 1.01 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                >
+                  {/* Browser Chrome */}
+                  <div className={styles.browserHeader}>
+                    <div className={styles.browserDots}>
+                      <span /><span /><span />
+                    </div>
+                    <div className={styles.browserUrl}>{project.mockup.header}</div>
+                  </div>
+                  {/* Dashboard Body */}
+                  <div className={styles.mockupBody}>
+                    <div className={styles.mockupSidebar}>
+                      {project.mockup.sidebar.map((item, k) => (
+                        <div key={k} className={`${styles.mockupNavItem} ${k === 0 ? styles.mockupNavItemActive : ""}`}>
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                    <div className={styles.mockupContent}>
+                      <div className={styles.mockupMetrics}>
+                        {project.mockup.metrics.map((m, k) => (
+                          <div key={k} className={styles.mockupMetric}>
+                            <span className={styles.mockupMetricLabel}>{m.label}</span>
+                            <span className={styles.mockupMetricValue}>{m.value}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className={styles.mockupChart}>
+                        <div className={styles.mockupChartBar} style={{ height: "50%" }} />
+                        <div className={styles.mockupChartBar} style={{ height: "70%" }} />
+                        <div className={styles.mockupChartBar} style={{ height: "40%" }} />
+                        <div className={styles.mockupChartBar} style={{ height: "85%" }} />
+                        <div className={styles.mockupChartBar} style={{ height: "60%" }} />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

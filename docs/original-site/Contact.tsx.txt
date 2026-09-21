@@ -1,0 +1,120 @@
+"use client";
+
+import { motion } from "framer-motion";
+import styles from "./Contact.module.css";
+
+export default function Contact() {
+  return (
+    <section id="contact" className={`section ${styles.section}`}>
+      <div className="container">
+        <motion.div 
+          className={styles.ctaContainer}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <div className={styles.ctaContent}>
+            <h2 className={`heading-2 ${styles.ctaTitle}`}>
+              Have a Business Problem That Software Could Solve?
+            </h2>
+            <p className={styles.ctaSubtext}>
+              Tell us how your business works. We'll help you identify the right digital solution.
+            </p>
+            <div className={styles.ctaButtons}>
+              <a href="#enquiry-form" className={styles.btnPrimaryDark}>
+                Let's Discuss Your Project
+              </a>
+              <a href="#" className={styles.btnSecondaryDark}>
+                WhatsApp Us
+              </a>
+            </div>
+          </div>
+        </motion.div>
+
+        <div id="enquiry-form" className={styles.contactGrid}>
+          <motion.div 
+            className={styles.contactInfo}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <div>
+              <h3 className="heading-3" style={{ marginBottom: "1rem" }}>Contact LumenSpire</h3>
+              <p className="text-body">Ready to build something that actually helps your business? Reach out to us directly or fill the form.</p>
+            </div>
+            
+            <div className={styles.infoBlock}>
+              <span className={styles.infoLabel}>Email</span>
+              <a href="mailto:[your-email@lumenspire.com]" className={styles.infoValue}>[your-email@lumenspire.com]</a>
+            </div>
+            
+            <div className={styles.infoBlock}>
+              <span className={styles.infoLabel}>WhatsApp / Phone</span>
+              <a href="tel:[your-phone-number]" className={styles.infoValue}>[your-phone-number]</a>
+            </div>
+            
+            <div className={styles.infoBlock}>
+              <span className={styles.infoLabel}>Location</span>
+              <span className={styles.infoValue}>Gujarat, India</span>
+            </div>
+          </motion.div>
+
+          <motion.form 
+            className={styles.contactForm}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            onSubmit={(e) => e.preventDefault()}
+          >
+            <div className={styles.formRow}>
+              <div className={styles.formGroup}>
+                <label className={styles.label} htmlFor="name">Name</label>
+                <input type="text" id="name" className={styles.input} required />
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.label} htmlFor="company">Business / Company Name</label>
+                <input type="text" id="company" className={styles.input} />
+              </div>
+            </div>
+            
+            <div className={styles.formRow}>
+              <div className={styles.formGroup}>
+                <label className={styles.label} htmlFor="phone">Phone</label>
+                <input type="tel" id="phone" className={styles.input} required />
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.label} htmlFor="email">Email</label>
+                <input type="email" id="email" className={styles.input} required />
+              </div>
+            </div>
+            
+            <div className={styles.formGroup}>
+              <label className={styles.label} htmlFor="service">Service Required</label>
+              <select id="service" className={styles.select} required defaultValue="">
+                <option value="" disabled>Select a service...</option>
+                <option value="business-website">Business Website</option>
+                <option value="custom-software">Custom Software</option>
+                <option value="web-application">Web Application</option>
+                <option value="inventory-billing">Inventory / Billing System</option>
+                <option value="b2b-website">B2B Website</option>
+                <option value="ui-ux">UI/UX Design</option>
+                <option value="automation">Automation</option>
+                <option value="ai-integration">AI Integration</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div className={styles.formGroup}>
+              <label className={styles.label} htmlFor="details">Project Details</label>
+              <textarea id="details" className={styles.textarea} placeholder="Tell us about your business and what you need..." required></textarea>
+            </div>
+            
+            <button type="submit" className={`button-primary ${styles.submitBtn}`}>
+              Send Project Enquiry
+            </button>
+          </motion.form>
+        </div>
+      </div>
+    </section>
+  );
+}

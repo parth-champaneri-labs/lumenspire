@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="logo-title logo-desc">
+  <title id="logo-title">LumenSpire</title>
+  <desc id="logo-desc">LumenSpire brand mark</desc>
+  <g transform="translate(38 48) scale(2.82)" fill="#101c34">
+    <path d="M11 10h10c24 0 43 19 43 43v44c0 23 18 42 41 42H61c-28 0-50-23-50-51V10Z"/>
+    <path d="M69 98h44c17 0 30 18 30 41h-33c-23 0-41-18-41-41Z"/>
+  </g>
+</svg>

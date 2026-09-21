@@ -1,0 +1,130 @@
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import styles from "./Services.module.css";
+
+const services = [
+  {
+    num: "01",
+    title: "Custom Software Development",
+    description: "Software built around your workflow instead of forcing your business into generic, rigid solutions. We design systems that adapt to how your team actually operates.",
+  },
+  {
+    num: "02",
+    title: "Business Websites",
+    description: "Premium websites designed to create trust, clearly communicate value, and convert visitors into customers.",
+  },
+  {
+    num: "03",
+    title: "Web Applications",
+    description: "Fast, scalable and responsive web applications built around your business requirements and workflows.",
+  },
+  {
+    num: "04",
+    title: "UI/UX & Product Design",
+    description: "Clean, intuitive interfaces that employees and customers actually enjoy using day to day.",
+  },
+  {
+    num: "05",
+    title: "Business Automation",
+    description: "Reduce repetitive manual work using smart workflows, API integrations and intelligent automation.",
+  },
+  {
+    num: "06",
+    title: "AI Integration",
+    description: "Add practical AI features where they genuinely improve productivity and enhance customer experience.",
+  },
+];
+
+export default function Services() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  return (
+    <section id="services" className={`section ${styles.section}`}>
+      <div className="container">
+        <div className={styles.header}>
+          <motion.span
+            className={styles.label}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            What we do
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="heading-2"
+          >
+            From Idea to<br />Working Product.
+          </motion.h2>
+          <motion.p
+            className={styles.headerDesc}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+          >
+            We combine design, engineering and business understanding to create digital products that actually solve problems.
+          </motion.p>
+        </div>
+
+        <div className={styles.grid}>
+          {/* Featured Service */}
+          <motion.div
+            className={styles.featured}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className={styles.featuredNum}>{services[0].num}</span>
+            <h3 className={styles.featuredTitle}>{services[0].title}</h3>
+            <p className={styles.featuredDesc}>{services[0].description}</p>
+            <div className={styles.featuredArrow}>
+              <ArrowUpRight size={24} />
+            </div>
+          </motion.div>
+
+          {/* Other Services */}
+          <div className={styles.serviceList}>
+            {services.slice(1).map((service, i) => (
+              <motion.div
+                key={i}
+                className={`${styles.serviceItem} ${hoveredIndex === i ? styles.serviceItemActive : ""}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 + i * 0.08, duration: 0.5 }}
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <span className={styles.serviceNum}>{service.num}</span>
+                <div className={styles.serviceContent}>
+                  <h3 className={styles.serviceTitle}>{service.title}</h3>
+                  <motion.p
+                    className={styles.serviceDesc}
+                    initial={false}
+                    animate={{
+                      height: hoveredIndex === i ? "auto" : 0,
+                      opacity: hoveredIndex === i ? 1 : 0,
+                    }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    {service.description}
+                  </motion.p>
+                </div>
+                <div className={styles.serviceArrow}>
+                  <ArrowUpRight size={20} />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

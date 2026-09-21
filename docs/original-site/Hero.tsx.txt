@@ -1,0 +1,266 @@
+"use client";
+
+import { useRef, useEffect, useState, useCallback } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import styles from "./Hero.module.css";
+
+const eyebrowItems = ["DIGITAL PRODUCTS", "SOFTWARE", "AUTOMATION"];
+
+const trustItems = [
+  "Websites",
+  "Custom Software",
+  "Business Automation",
+  "AI Integration",
+];
+
+export default function Hero() {
+  const heroRef = useRef<HTMLElement>(null);
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    if (!heroRef.current) return;
+    const rect = heroRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
+    const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
+    setMouse({ x, y });
+  }, []);
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+    
+    const hero = heroRef.current;
+    if (!hero) return;
+    hero.addEventListener("mousemove", handleMouseMove);
+    return () => hero.removeEventListener("mousemove", handleMouseMove);
+  }, [handleMouseMove]);
+
+  return (
+    <section id="home" className={styles.hero} ref={heroRef}>
+      {/* Background elements */}
+      <div className={styles.heroBg}>
+        <div className={styles.gridPattern} />
+        <div className={styles.glowOrb} />
+        <div className={styles.glowOrbSecondary} />
+      </div>
+
+      <div className={`container ${styles.container}`}>
+        {/* Left Content */}
+        <div className={styles.content}>
+          <motion.div 
+            className={styles.eyebrow}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            {eyebrowItems.map((item, i) => (
+              <span key={i}>
+                {i > 0 && <span className={styles.eyebrowDot}>•</span>}
+                {item}
+              </span>
+            ))}
+          </motion.div>
+
+          <h1 className={styles.title}>
+            <motion.span 
+              className={styles.titleLine}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+            >
+              We Build <span className={styles.titleAccent}>Digital</span>
+            </motion.span>
+            <motion.span 
+              className={styles.titleLine}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+            >
+              <span className={styles.titleAccent}>Systems</span> That Move
+            </motion.span>
+            <motion.span 
+              className={styles.titleLine}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.55 }}
+            >
+              Businesses Forward.
+            </motion.span>
+          </h1>
+
+          <motion.p 
+            className={styles.description}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+          >
+            LumenSpire designs and develops modern websites, custom software and intelligent business systems built around how companies actually work.
+          </motion.p>
+
+          <motion.div 
+            className={styles.ctas}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.85 }}
+          >
+            <Link href="#contact" className="button-primary">
+              Start a Project
+              <ArrowRight size={18} />
+            </Link>
+            <Link href="#work" className="button-secondary">
+              Explore Our Work
+            </Link>
+          </motion.div>
+
+          <motion.div 
+            className={styles.trustLine}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+          >
+            {trustItems.map((item, i) => (
+              <span key={i} className={styles.trustItem}>
+                {i > 0 && <span className={styles.trustDot}>•</span>}
+                {item}
+              </span>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Right Visual — Layered Product Ecosystem */}
+        <div className={styles.visual}>
+          <div 
+            className={styles.visualInner} 
+            style={{
+              transform: `perspective(1200px) rotateY(${mouse.x * 3}deg) rotateX(${mouse.y * -3}deg)`,
+            }}
+          >
+            {/* Main Dashboard */}
+            <motion.div 
+              className={styles.dashboardMain}
+              initial={{ opacity: 0, scale: 0.9, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className={styles.dashHeader}>
+                <div className={styles.dashDots}>
+                  <span /><span /><span />
+                </div>
+                <span className={styles.dashTitle}>Business Dashboard</span>
+                <div className={styles.dashAvatar} />
+              </div>
+              <div className={styles.dashBody}>
+                <div className={styles.dashSidebar}>
+                  <div className={styles.dashNavItem} data-active="true">Dashboard</div>
+                  <div className={styles.dashNavItem}>Orders</div>
+                  <div className={styles.dashNavItem}>Inventory</div>
+                  <div className={styles.dashNavItem}>Customers</div>
+                  <div className={styles.dashNavItem}>Reports</div>
+                </div>
+                <div className={styles.dashContent}>
+                  <div className={styles.metricRow}>
+                    <div className={styles.metricCard}>
+                      <span className={styles.metricLabel}>Revenue</span>
+                      <span className={styles.metricValue}>₹12.4L</span>
+                      <span className={styles.metricChange}>+18.2%</span>
+                    </div>
+                    <div className={styles.metricCard}>
+                      <span className={styles.metricLabel}>Orders</span>
+                      <span className={styles.metricValue}>384</span>
+                      <span className={styles.metricChange}>+12.5%</span>
+                    </div>
+                    <div className={styles.metricCard}>
+                      <span className={styles.metricLabel}>Customers</span>
+                      <span className={styles.metricValue}>1,247</span>
+                      <span className={styles.metricChange}>+8.1%</span>
+                    </div>
+                  </div>
+                  <div className={styles.chartArea}>
+                    <div className={styles.chartLabel}>Monthly Revenue</div>
+                    <div className={styles.chartBars}>
+                      <div className={styles.chartBar} style={{ height: "45%" }} />
+                      <div className={styles.chartBar} style={{ height: "62%" }} />
+                      <div className={styles.chartBar} style={{ height: "38%" }} />
+                      <div className={styles.chartBar} style={{ height: "75%" }} />
+                      <div className={styles.chartBar} style={{ height: "58%" }} />
+                      <div className={styles.chartBar} style={{ height: "85%" }} />
+                      <div className={styles.chartBar} style={{ height: "92%" }} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Floating Analytics Panel */}
+            <motion.div 
+              className={styles.floatingPanel} 
+              data-position="top-left"
+              initial={{ opacity: 0, x: -30, y: -20 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              style={{ transform: `translate(${mouse.x * -8}px, ${mouse.y * -12}px)` }}
+            >
+              <div className={styles.panelIcon}>📊</div>
+              <div>
+                <div className={styles.panelTitle}>Analytics</div>
+                <div className={styles.panelValue}>+24.5% this month</div>
+              </div>
+            </motion.div>
+
+            {/* Floating Invoice */}
+            <motion.div 
+              className={styles.floatingPanel} 
+              data-position="bottom-right"
+              initial={{ opacity: 0, x: 30, y: 20 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
+              style={{ transform: `translate(${mouse.x * 12}px, ${mouse.y * 8}px)` }}
+            >
+              <div className={styles.panelIcon}>📄</div>
+              <div>
+                <div className={styles.panelTitle}>Invoice #1247</div>
+                <div className={styles.panelValue}>₹48,500 • Paid</div>
+              </div>
+            </motion.div>
+
+            {/* Floating Mobile Preview */}
+            <motion.div 
+              className={styles.mobilePreview}
+              initial={{ opacity: 0, y: 40, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.7, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+              style={{ transform: `translate(${mouse.x * 15}px, ${mouse.y * 10}px)` }}
+            >
+              <div className={styles.mobileNotch} />
+              <div className={styles.mobileScreen}>
+                <div className={styles.mobileHeader}>Quick View</div>
+                <div className={styles.mobileMetric}>
+                  <span>Today&apos;s Sales</span>
+                  <strong>₹1.8L</strong>
+                </div>
+                <div className={styles.mobileMetric}>
+                  <span>Pending</span>
+                  <strong>12</strong>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Notification Badge */}
+            <motion.div 
+              className={styles.notifBadge}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 1.3, type: "spring", stiffness: 400 }}
+              style={{ transform: `translate(${mouse.x * -10}px, ${mouse.y * -6}px)` }}
+            >
+              <span className={styles.notifDot} />
+              New order received
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,108 @@
+"use client";
+
+import { motion } from "framer-motion";
+import styles from "./Process.module.css";
+
+const steps = [
+  {
+    num: "01",
+    title: "Understand",
+    desc: "We first understand the business, workflow, users and the real problem that needs solving.",
+  },
+  {
+    num: "02",
+    title: "Plan",
+    desc: "We define features, architecture and the simplest practical solution that delivers results.",
+  },
+  {
+    num: "03",
+    title: "Design",
+    desc: "We create the interface and user experience that people will actually enjoy using.",
+  },
+  {
+    num: "04",
+    title: "Build",
+    desc: "We develop a scalable and maintainable product using modern technologies.",
+  },
+  {
+    num: "05",
+    title: "Test",
+    desc: "We test usability, functionality and responsive behaviour across all devices.",
+  },
+  {
+    num: "06",
+    title: "Launch & Improve",
+    desc: "We deploy the system and support continuous improvements as the business evolves.",
+  },
+];
+
+export default function Process() {
+  return (
+    <section className={`section ${styles.section}`}>
+      <div className="container">
+        <div className={styles.header}>
+          <motion.span
+            className={styles.label}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            Our Process
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="heading-2"
+          >
+            From Business Problem<br />to Working Product.
+          </motion.h2>
+        </div>
+
+        {/* Desktop Timeline */}
+        <div className={styles.timeline}>
+          <div className={styles.timelineLine} />
+          {steps.map((step, i) => (
+            <motion.div
+              key={i}
+              className={styles.step}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+            >
+              <div className={styles.stepDot} />
+              <div className={styles.stepNumber}>{step.num}</div>
+              <h3 className={styles.stepTitle}>{step.title}</h3>
+              <p className={styles.stepDescription}>{step.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Mobile Timeline */}
+        <div className={styles.mobileTimeline}>
+          {steps.map((step, i) => (
+            <motion.div
+              key={i}
+              className={styles.mobileStep}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, duration: 0.4 }}
+            >
+              <div className={styles.mobileStepLeft}>
+                <div className={styles.mobileStepDot} />
+                {i < steps.length - 1 && <div className={styles.mobileStepLine} />}
+              </div>
+              <div className={styles.mobileStepContent}>
+                <span className={styles.mobileStepNum}>{step.num}</span>
+                <h3 className={styles.stepTitle}>{step.title}</h3>
+                <p className={styles.stepDescription}>{step.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,6 @@
+import { ArrowUpRight } from "lucide-react";
+import SectionLabel from "./SectionLabel";
+import InterfacePreview from "./digital/InterfacePreview";
+export default function WebExperiences() {
+  return <section id="web-experiences" className="web-experiences page-pad" aria-labelledby="web-title"><div className="section-top"><SectionLabel>Web experiences</SectionLabel><span className="mono">Thoughtful at every size.</span></div><div className="web-heading"><h2 id="web-title" className="display-heading">A better<br /><em>first impression.</em></h2><div><p className="section-copy">Your website is often the first conversation. Make it clear, memorable, and just as considered on a phone as it is on a desktop.</p><a className="text-link" href="#contact">Let’s build your website <ArrowUpRight size={18} /></a></div></div><div className="responsive-stage"><div className="responsive-desktop"><InterfacePreview kind="website" /></div><div className="responsive-tablet"><InterfacePreview kind="website" /></div><div className="responsive-mobile"><InterfacePreview kind="website" /></div><div className="responsive-caption mono"><span>Desktop / Tablet / Mobile</span><span>One experience. Every screen.</span></div></div></section>;
+}

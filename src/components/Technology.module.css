@@ -1,0 +1,64 @@
+/* Technology — Subtle Marquee */
+
+.section {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+  overflow: hidden;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--foreground-muted);
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+}
+
+.marqueeTrack {
+  display: flex;
+  align-items: center;
+  animation: techScroll 30s linear infinite;
+  flex-shrink: 0;
+}
+
+.techItem {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--foreground-secondary);
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.sep {
+  color: var(--border);
+  font-weight: 300;
+}
+
+@keyframes techScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack {
+    animation: none;
+  }
+}

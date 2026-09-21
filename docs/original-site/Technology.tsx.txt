@@ -1,0 +1,39 @@
+"use client";
+
+import styles from "./Technology.module.css";
+
+const technologies = [
+  "React", "Next.js", "TypeScript", "Node.js", "Express",
+  "MongoDB", "MySQL", "Laravel", "Tailwind CSS",
+  "REST APIs", "Cloud Hosting", "Git",
+];
+
+export default function Technology() {
+  const marqueeContent = [...technologies, ...technologies];
+
+  return (
+    <section className={styles.section}>
+      <div className={styles.inner}>
+        <span className={styles.label}>Technologies We Work With</span>
+        <div className={styles.marquee}>
+          <div className={styles.marqueeTrack}>
+            {marqueeContent.map((tech, i) => (
+              <span key={i} className={styles.techItem}>
+                {tech}
+                <span className={styles.sep}>—</span>
+              </span>
+            ))}
+          </div>
+          <div className={styles.marqueeTrack} aria-hidden="true">
+            {marqueeContent.map((tech, i) => (
+              <span key={`dup-${i}`} className={styles.techItem}>
+                {tech}
+                <span className={styles.sep}>—</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
