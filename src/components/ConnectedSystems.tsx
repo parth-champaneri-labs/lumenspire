@@ -28,8 +28,8 @@ export default function ConnectedSystems() {
           <div className={styles.topline}><span className="mono">The connected workspace</span><span className={styles.legend}><i />One shared system</span></div>
           <div className={styles.hub}>
             
-            <div><span className={`mono ${styles.eyebrow}`}>Built around your business</span><Image src="/brand/lumenspire-navbar.png" width={764} height={148} alt="LumenSpire" className={styles.logo} /></div>
-            <span className={styles.hubNumber}>modules</span>
+            {/* <div><span className={`mono ${styles.eyebrow}`}>Built around your business</span><Image src="/brand/lumenspire-navbar.png" width={764} height={148} alt="LumenSpire" className={styles.logo} /></div> */}
+            {/* <span className={styles.hubNumber}>modules</span> */}
           </div>
           <div className={styles.network}>
             <div className={styles.trunk} aria-hidden="true"><span /></div>
