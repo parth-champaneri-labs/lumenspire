@@ -1,0 +1,27 @@
+.page { min-height: 100svh; padding: clamp(1.5rem, 3vw, 2.5rem) var(--gutter); background: var(--paper); color: var(--ink); display: flex; flex-direction: column; }
+.topline, .bottomline { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; font-family: Consolas, "Courier New", monospace; font-size: .625rem; letter-spacing: .12em; }
+.topline { border-bottom: 1px solid var(--line); padding-bottom: 1.25rem; }
+.brand { font-family: var(--font-manrope), Arial, sans-serif; font-size: .875rem; font-weight: 750; letter-spacing: -.035em; }
+.brand span { color: var(--orange); }
+.topnote, .bottomline { color: var(--muted); }
+.content { width: 100%; margin: auto; padding: 3rem 0; text-align: center; }
+.artwork { display: flex; align-items: center; justify-content: center; gap: .04em; font-family: var(--font-manrope), Arial, sans-serif; font-size: clamp(8rem, 20vw, 16rem); font-weight: 550; line-height: 1; letter-spacing: -.085em; padding-right: .085em; margin-bottom: 2rem; }
+.orbit { position: relative; display: block; width: .66em; height: .79em; margin: .08em .035em 0 .075em; border: 1px solid var(--orange); border-radius: 50%; transform: rotate(28deg); background: repeating-radial-gradient(ellipse at center, transparent 0, transparent 9px, rgba(239, 99, 62, .3) 9px, rgba(239, 99, 62, .3) 10px); }
+.orbit::before { content: ""; position: absolute; inset: 17%; border: 1px solid var(--orange); border-radius: 50%; background: var(--paper); }
+.orbit span { position: absolute; top: 11%; right: 7%; width: .065em; height: .065em; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 5px var(--paper); }
+.eyebrow { font-family: Consolas, "Courier New", monospace; font-size: .625rem; letter-spacing: .16em; color: var(--muted); margin-bottom: 1rem; }
+.content h1 { font-family: var(--font-manrope), Arial, sans-serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 500; letter-spacing: -.06em; line-height: 1.1; }
+.content h1 em { font-family: var(--font-editorial), Georgia, serif; font-weight: 400; }
+.description { max-width: 25rem; margin: 1.2rem auto 0; color: var(--muted); font-size: .95rem; line-height: 1.7; }
+.actions { display: flex; justify-content: center; margin-top: 1.8rem; }
+.primary { display: inline-flex; align-items: center; justify-content: space-between; gap: 2.5rem; min-height: 3.25rem; padding: .9rem 1.25rem; background: var(--ink); color: var(--paper); font-family: Consolas, "Courier New", monospace; font-size: .6875rem; letter-spacing: .06em; transition: background .2s, color .2s; }
+.primary:hover { background: var(--orange); color: var(--ink); }
+.primary span { font-family: Arial, sans-serif; font-size: 1.2rem; }
+.bottomline { padding-top: 1.25rem; border-top: 1px solid var(--line); }
+@media (max-width: 600px) {
+  .content { padding: 3rem 0; }
+  .artwork { font-size: clamp(7rem, 32vw, 12rem); }
+  .description { max-width: 19rem; font-size: .875rem; }
+  .bottomline { font-size: .5rem; gap: .75rem; }
+  .topnote { font-size: .5rem; }
+}
